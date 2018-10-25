@@ -1,0 +1,11 @@
+<table id="transactions" class="dash-table pure-table pure-table-horizontal">
+  <thead>
+    <th>Date</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th><span id="addTransaction" class="fas fa-plus"></span></th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>

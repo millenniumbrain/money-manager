@@ -1,7 +1,6 @@
 require 'puma'
 require 'roda'
 require 'json'
-require 'better_errors'
 require 'logger'
 require 'rbnacl'
 require 'securerandom'
@@ -15,7 +14,7 @@ require 'nokogiri'
 require 'jwt'
 require 'tilt/erubis'
 require './models'
-require './env.rb'
+require './.env.rb'
 
 class App < Roda
   plugin :default_headers,
@@ -46,14 +45,12 @@ class App < Roda
 
   configure :development do
     use Rack::MethodOverride
-    use BetterErrors::Middleware
-    BetterErrors.application_root = __dir__
   end
 
   configure :production do
   end
 
-  Dir['./route/*.rb'].each { |f| require f }
+  Dir['./routes/*.rb'].each { |f| require f }
   Dir['./helpers/*.rb'].each { |f| require f }
   Dir['./lib/*.rb'].each { |f| require f }
 

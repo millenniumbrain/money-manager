@@ -12,10 +12,9 @@ gem 'rbnacl'
 gem 'nokogiri'
 gem 'activesupport'
 gem 'jwt'
-gem 'sucker_punch'
+gem 'excon'
 
 group :production do
-  gem 'pg'
 end
 
 group :documentation do
@@ -23,6 +22,7 @@ group :documentation do
 end
 
 group :testing, :development do
+  gem 'shotgun'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'capybara'

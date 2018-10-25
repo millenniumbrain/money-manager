@@ -1,5 +1,6 @@
 class User < Sequel::Model(:users)
-  one_to_many :example_associations
+  one_to_many :accounts
+  one_to_many :transactions
 
   def self.login(username, password)
     return unless username && password
