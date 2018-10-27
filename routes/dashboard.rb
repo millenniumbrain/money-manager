@@ -3,7 +3,17 @@ App.route("dashboard") do |r|
   r.is do
     r.get do
       view('dashboard/home', layout: 'dashboard/layout',
-          layout_opts: { locals: {title: "Home", js: ["../js/dashboard.js"]}})
+          layout_opts: { locals: {title: "Home", js: [link_js("dashboard")]}})
+    end
+
+    r.post do
+    end
+  end
+
+  r.is 'bills' do
+    r.get do
+      view('dashboard/bills', layout: 'dashboard/layout',
+          layout_opts: { locals: {title: "Bills", js: [link_js("dashboard")]}})
     end
 
     r.post do

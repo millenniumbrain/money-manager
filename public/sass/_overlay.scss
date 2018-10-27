@@ -7,26 +7,55 @@
   width:100%;
   height:120%;
   background: rgba(0, 0, 0, 0.8);
+
+  .modal {
+    @include z-index-6;
+    width: 500px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    form {
+      width: 80%;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: right;
+      input, select, textarea {
+        width: 90%;
+        padding: 5px;
+      }
+
+      button {
+        margin: 8% 0 5%;
+        position: relative;
+        right: 35px;
+      }
+    }
+  }
+
+  .modal-header {
+    font-size: 1.1em;
+    font-weight: bold;
+    background: #532186;
+    color: #eee;
+    padding: 15px 25px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    .material-icons {
+      @include vertical-align(relative, -10%);
+    }
+  }
+  
+  .modal-title {
+    @include vertical-align(relative, -10%);
+    text-align: left;
+  }
 }
 
-#overlay .modal {
-  @include z-index-6;
-  width: 500px;
-  margin: 50px auto;
-  background-color: #fff;
-}
 
-.modal-header {
-  font-size: 1.3em;
-  font-weight: bold;
-  background: #000e1b;
-  color: #eee;
-  padding: 10px 15px;
-}
 
-.modal-title {
-  text-align: left;
-}
 
 .modal-close {
   text-align: right;

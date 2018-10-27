@@ -4,7 +4,7 @@
     <th>Amount</th>
     <th>Description</th>
     <th>Category</th>
-    <th><span id="addTransaction" class="fas fa-plus"></span></th>
+    <th><span id="addTransaction" class="material-icons" title="Add Transaction">add</span></th>
   </thead>
   <tbody>
   </tbody>

@@ -1,5 +1,5 @@
 export class HTTP {
-  static get(url: string, data = null, headers: {}) {
+  static get(url: string, data = null, headers = null) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url);
@@ -20,7 +20,7 @@ export class HTTP {
     });
   }
 
-  static post(url, data, headers: {}) {
+  static post(url, data, headers = null) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url);
@@ -41,7 +41,7 @@ export class HTTP {
     });
   }
 
-  static put(url: string, data, headers: {}) {
+  static put(url: string, data, headers = null) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url);
@@ -62,7 +62,7 @@ export class HTTP {
     });
   }
 
-  static delete(url: string, data, headers: {}) {
+  static delete(url: string, data, headers = null) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url);

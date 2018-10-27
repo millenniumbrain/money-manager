@@ -1,4 +1,5 @@
 @import 'base';
+@import 'forms';
 
 .pure-g {
   height: 100%;
@@ -9,6 +10,7 @@
 
 #header {
   border-bottom: 1px solid #eee;
+  padding: 10px 5px;
 }
 
 .header-wrap {
@@ -25,13 +27,39 @@
 }
 
 .dash-table {
-  width: 80%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 2% auto;
   thead {
     text-align: center;
+    position: relative;
+    th {
+      @include vertical-align(relative, 10%);
+      .material-icons {
+        @include vertical-align(relative, -28%);
+      }
+    }
   }
 }
 
-#addTransactions {
-  
+.pure-menu-item {
+  border-bottom: 1px solid #eee;
+}
+
+.pure-menu-link {
+  padding: .5em 1em .8em;
+}
+
+.menu-icon {
+  padding: 0 10px 0 0;
+}
+
+#addTransaction {
+  box-sizing: border-box;
+  padding: 2px;
+  background: rgba(189, 195, 199, 1);
+  border-radius: 30px;
+  &:hover {
+    background: rgba(108, 122, 137, 1);
+    cursor: pointer;
+  }
 }

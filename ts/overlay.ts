@@ -21,8 +21,9 @@ export class Overlay {
     modalTitle.setAttribute("class", "pure-u-1-2 modal-title");
     modalTitle.innerHTML = this.title;
     modalClose.setAttribute("class", "pure-u-1-2 modal-close");
-    close.setAttribute("class", "fa fa-times");
-
+    close.setAttribute("class", "material-icons");
+    close.textContent = "close";
+    
     close.addEventListener("click", (event: Event) => {
       this.overlay.remove();
     }, false);
@@ -44,12 +45,7 @@ export class Overlay {
   }
 
   public create(selector = "dashboard") : void {
-    let body = null;
-    if (selector !== "dashboard") {
-      body = document.querySelector('body');
-    } else {
-      body = document.getElementById(selector);
-    }
+    let body = document.querySelector('body');
     // remove overlay if clicked outside of modal
     this.overlay.addEventListener("click", (event: Event) => {
       let target = <HTMLElement>event.target;
@@ -62,7 +58,4 @@ export class Overlay {
     this.overlay.appendChild(this.modal)
     body.appendChild(this.overlay);
   }
-}
-
-
 }

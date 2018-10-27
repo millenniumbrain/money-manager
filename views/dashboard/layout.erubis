@@ -5,12 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/regular.css" integrity="sha384-A/oR8MwZKeyJS+Y0tLZ16QIyje/AmPduwrvjeH6NLiLsp4cdE4uRJl8zobWXBm4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="<%= link_css("dashboard")%>">
   </head>
   <body>
     <div id="container">
@@ -31,10 +29,11 @@
         <div class="pure-u-1-6">
           <nav id="dashNav" class="pure-menu">
             <ul class="pure-menu-list">
-              <li class="pure-menu-item"><a href="#" class="pure-menu-link">Flickr</a></li>
-              <li class="pure-menu-item"><a href="#" class="pure-menu-link">Messenger</a></li>
-              <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
-              <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
+              <li class="pure-menu-item"><a href="/dashboard" class="pure-menu-link"><span class="material-icons menu-icon">home</span>Home</a></li>
+              <li class="pure-menu-item"><a href="/dashboard/accounts" class="pure-menu-link"><span class="material-icons menu-icon">account_balance_wallet</span>Accounts</a></li>
+              <li class="pure-menu-item"><a href="/dashboard/budgets" class="pure-menu-link"><span class="material-icons menu-icon">pie_chart</span>Budgets</a></li>
+              <li class="pure-menu-item"><a href="/dashboard/bills" class="pure-menu-link"><span class="material-icons menu-icon">receipt</span>Bills</a></li>
+              <li class="pure-menu-item"><a href="/dashboard/invoices" class="pure-menu-link"><span class="material-icons menu-icon">attach_money</span>Invoices</a></li>
             </ul>
           </nav>
         </div>
