@@ -1,9 +1,10 @@
 @import 'base';
 @import 'forms';
+@import 'table';
 
 .pure-g {
   height: 100%;
-  div {
+  [class*="pure-u"] {
     height: 100%;
   }
 }
@@ -26,40 +27,122 @@
   border-right: 1px solid #eee;
 }
 
-.dash-table {
-  width: 90%;
-  margin: 2% auto;
-  thead {
-    text-align: center;
-    position: relative;
-    th {
-      @include vertical-align(relative, 10%);
-      .material-icons {
-        @include vertical-align(relative, -28%);
-      }
-    }
-  }
-}
-
 .pure-menu-item {
   border-bottom: 1px solid #eee;
 }
 
 .pure-menu-link {
   padding: .5em 1em .8em;
+  &:hover {
+    color: #2c82c9;
+  }
 }
 
 .menu-icon {
   padding: 0 10px 0 0;
 }
 
+#overview {
+  height: 40%;
+  margin: 2% 0 0;
+}
+
+.overview-wrap {
+  height: 90%;
+  h3 {
+    color: #4d4d4d;
+    width: 85%;
+    margin: 0 auto;
+    padding: 5px;
+  }
+}
+
+.overview-card {
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 90%;
+  height: 70%;
+  margin: 0 auto;
+  h4 {
+    color: #4d4d4d;
+    margin: 12px 20px 5px;
+  }
+
+  canvas {
+    height: 80%;
+  }
+}
+
+#charts {
+  height: 80%;
+  .overview-card {
+    height: 90%;
+  }
+}
+
+.available-balance {
+  padding: 0 10px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.currency {
+  position: relative;
+  bottom: 8px;
+  left: 5px;
+  font-size: 1.6em;
+  //font-weight: bold
+}
+
+.account-options {
+  width: 25%;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  text-align: right;
+  span {
+    @include  vertical-align(relative, -12%);
+    padding: 2px;
+    background: rgba(189, 195, 199, 0);
+    border-radius: 30px;
+    &:hover {
+      padding: 2px;
+      background: rgba(189, 195, 199, 1);
+      border-radius: 30px;
+      cursor: pointer;
+    }
+  }
+}
+
+.account-name {
+  position: absolute;
+  width: 50%;
+  top: 4px;
+  right: 20%;
+  text-align: center;
+  .material-icons {
+    font-weight: bold;
+  }
+}
+
+#currentBalance {
+  font-size: 2em;
+  //font-weight: bold;
+}
+
 #addTransaction {
   box-sizing: border-box;
   padding: 2px;
-  background: rgba(189, 195, 199, 1);
+  background: rgba(189, 195, 199, 0);
   border-radius: 30px;
   &:hover {
-    background: rgba(108, 122, 137, 1);
+    padding: 2px;
+    background: rgba(189, 195, 199, 1);
+    border-radius: 30px;
     cursor: pointer;
   }
+}
+#categoryPie {
+  margin-top: 20px;
 }

@@ -2,6 +2,7 @@ Sequel.migration do
   up do
     create_table(:transactions) do
       primary_key :id
+      DateTime :date
       String :type
       BigDecimal :amount
       String :desc

@@ -1,0 +1,45 @@
+.dash-table {
+  background: #eee;
+  width: 95%;
+  margin: 2% auto;
+  border-collapse: separate;
+  border-radius: 8px;
+  tbody {
+    text-align: center;
+    background: #fff;
+    tr td {
+      border-top: 1px solid #cbcbcb;
+    }
+
+  }
+}
+
+.dash-table thead {
+  background: none;
+  position: relative;
+  height: 45px;
+  text-align: center;
+  th {
+    padding: .5em 0;
+    border: none;
+    position: relative;
+    span {
+      width: 100%;
+      display: block;
+      @include vertical-align(absolute);
+    }
+    .material-icons {
+      width: initial;
+      left: 35%;
+     // @include vertical-align(relative, -28%);
+    }
+  }
+}
+
+.income {
+  color: #26a65b;
+}
+
+.expense {
+  color: #f22613;
+}

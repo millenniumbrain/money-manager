@@ -13,11 +13,6 @@ export class TransactionOverlay extends Overlay {
     super.generateModal();
   }
 
-  public getAccounts = (callback: () => any) => {
-    if (callback !== undefined) {
-      callback();
-    }
-  }
 
   public getCategories() {
 
@@ -32,20 +27,19 @@ export class TransactionOverlay extends Overlay {
     const type = document.createElement("select");
     const amount = document.createElement("input");
     const accounts = document.createElement("select");
-    const categories = document.createElement("select");
     const desc = document.createElement("textarea");
     const submit = document.createElement("button");
 
     date.name = "date";
     type.name = "type";
     amount.name = "amount";
-    accounts.name = "accounts";
-    categories.name = "categories";
+    accounts.name = "account";
     desc.name = "desc";
     
     date.value = DateTime.local().toLocaleString(DateTime.DATE_MED);
     submit.className = "pure-button pure-button-primary";
     submit.textContent = "Add Transaction";
+    submit.type = "submit";
     
     const fields = [];
     
@@ -56,24 +50,27 @@ export class TransactionOverlay extends Overlay {
       typeOpt.textContent = typeOpts[i][0].toUpperCase() + typeOpts[i].slice(1);
       type.appendChild(typeOpt);
     }
-    const option = document.createElement("option");
-    const option2 = document.createElement("option");
-    option.textContent = "None";
-    option2.textContent = "None";
-    accounts.appendChild(option2);
-    categories.appendChild(option); 
+
+    HTTP.get("/accounts").then((data) => {
+      const accountList = JSON.parse(data as string);
+      console.log(accountList)
+      for(let i = 0; i < accountList.length; i++) {
+        const option = document.createElement("option");
+        console.log(accountList[i]["name"])
+        option.textContent = accountList[i]["name"];
+        option.value = accountList[i]["id"]
+        accounts.appendChild(option);
+      }
+    });
 
     fields.push(date);
     fields.push(type);
     fields.push(amount);
     fields.push(accounts);
-    fields.push(categories);
     fields.push(desc);
     fields.push(submit);
 
-
-
-    const labels = ["Date", "Type", "Amount", "Accounts", "Categories", "Description"];
+    const labels = ["Date", "Type", "Amount", "Accounts", "Description"];
     for (let i = labels.length - 1; i >= 0; i--) {
       const label = document.createElement("label");
       label.textContent = labels[i];
@@ -93,6 +90,10 @@ export class TransactionOverlay extends Overlay {
 
     this.form.addEventListener("submit", (event: Event) => {
       event.preventDefault();
+
+      const formData = new FormData(this.form);
+
+      HTTP.post("/transactions", formData);
     })
 
 

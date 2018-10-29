@@ -32,7 +32,9 @@
   },
   "homepage": "https://github.com/millenniumbrain/crash-nebula-boilerplate#readme",
   "dependencies": {
+    "@types/chart.js": "^2.7.40",
     "@types/luxon": "^1.4.0",
+    "chart.js": "^2.7.3",
     "luxon": "^1.4.4"
   }
 }
