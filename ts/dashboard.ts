@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 });
 
-var ctx = document.getElementById("categoryPie");
-var myChart = new Chart(ctx as any, {
+const categoryCTX = document.getElementById("categoryPie");
+const doughnut = new Chart(categoryCTX as any, {
     type: 'doughnut',
     data: {
         labels: ["Food", "Electronics", "Gaming"],
@@ -93,12 +93,7 @@ var myChart = new Chart(ctx as any, {
             label: '# of Votes',
             data: [12, 19, 3],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
+                'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
             ],
@@ -108,15 +103,78 @@ var myChart = new Chart(ctx as any, {
     options: {
       responsive: true,
       legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Doughnut Chart'
+        position: 'left',
       },
       animation: {
         animateScale: true,
         animateRotate: true
       }
     }
+});
+
+const balanceCTX = document.getElementById("balanceHistory");
+const balanceHistory = new Chart(balanceCTX as any, {
+  type: 'line',
+  data: {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [{
+          label: 'Income',
+          data: [200,  50, 450, 75, 125, 150],
+          backgroundColor: [
+              'rgba(0, 230, 64, 0.1)',
+          ],
+          pointRadius: 0,
+          borderColor: [
+              'rgba(0, 230, 64, 1)',
+          ],
+          borderWidth: 1
+      },
+      {
+        label: 'Expense',
+        data: [300,  25, 200, 0, 0, 250],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.1)',
+        ],
+        pointRadius: 0,
+        borderColor: [
+            'rgba(255,99,132,1)',
+        ],
+        borderWidth: 1
+    }
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    },
+    layout: {
+      padding: {
+        left: 50,
+        right: 50,
+        bottom: 30,
+        top: 10
+      }
+    },
+    scales: {
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Month'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Dollars (USD)'
+        }
+      }]
+    }
+  }
 });

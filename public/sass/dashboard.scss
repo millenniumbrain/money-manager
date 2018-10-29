@@ -43,12 +43,12 @@
 }
 
 #overview {
-  height: 40%;
+  height: 30%;
   margin: 2% 0 0;
 }
 
 .overview-wrap {
-  height: 90%;
+  height: 100%;
   h3 {
     color: #4d4d4d;
     width: 85%;
@@ -62,22 +62,11 @@
   border-radius: 8px;
   border: 1px solid #ddd;
   width: 90%;
-  height: 70%;
+  height: 80%;
   margin: 0 auto;
   h4 {
     color: #4d4d4d;
     margin: 12px 20px 5px;
-  }
-
-  canvas {
-    height: 80%;
-  }
-}
-
-#charts {
-  height: 80%;
-  .overview-card {
-    height: 90%;
   }
 }
 
@@ -126,6 +115,20 @@
   }
 }
 
+#charts {
+  height: 55%;
+  .overview-card {
+    height: 90%;
+  }
+
+  canvas {
+  }
+}
+
+#categoryPie {
+  margin-top: 10%;
+}
+
 #currentBalance {
   font-size: 2em;
   //font-weight: bold;
@@ -142,7 +145,4 @@
     border-radius: 30px;
     cursor: pointer;
   }
-}
-#categoryPie {
-  margin-top: 20px;
 }
