@@ -154,8 +154,8 @@ const balanceHistory = new Chart(balanceCTX as any, {
     },
     layout: {
       padding: {
-        left: 50,
-        right: 50,
+        left: 60,
+        right: 60,
         bottom: 30,
         top: 10
       }

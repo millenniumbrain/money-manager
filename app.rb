@@ -51,7 +51,7 @@ class App < Roda
   configure :production do
   end
 
-  Dir['./routes/*.rb'].each { |f| require f }
+  Dir['./routes/**/*.rb'].each { |f| require f }
   Dir['./helpers/*.rb'].each { |f| require f }
   Dir['./lib/*.rb'].each { |f| require f }
 

@@ -42,9 +42,32 @@
   padding: 0 10px 0 0;
 }
 
-#overview {
-  height: 30%;
+.overview {
   margin: 2% 0 0;
+}
+
+#homeOverview {
+  height: 25%;
+}
+
+#billsOverview {
+  height: 25%;
+}
+
+#charts {
+  height: 55%;
+  .overview-card {
+    height: 90%;
+    width: 95%;
+    margin: 0 15px;
+  }
+
+  canvas {
+  }
+}
+
+#categoryPie {
+  margin-top: 10%;
 }
 
 .overview-wrap {
@@ -115,19 +138,6 @@
   }
 }
 
-#charts {
-  height: 55%;
-  .overview-card {
-    height: 90%;
-  }
-
-  canvas {
-  }
-}
-
-#categoryPie {
-  margin-top: 10%;
-}
 
 #currentBalance {
   font-size: 2em;
