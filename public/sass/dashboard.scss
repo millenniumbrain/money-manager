@@ -43,7 +43,7 @@
 }
 
 .overview {
-  margin: 2% 0 0;
+  margin: 2% 0 2%;
 }
 
 #homeOverview {
@@ -54,16 +54,18 @@
   height: 25%;
 }
 
+.chartjs-render-monitor {
+  position: relative;
+}
+
 #charts {
-  height: 55%;
+  height: 60%;
   .overview-card {
-    height: 90%;
+    height: 100%;
     width: 95%;
     margin: 0 15px;
   }
 
-  canvas {
-  }
 }
 
 #categoryPie {

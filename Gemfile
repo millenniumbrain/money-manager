@@ -13,6 +13,8 @@ gem 'nokogiri'
 gem 'activesupport'
 gem 'jwt'
 gem 'excon'
+gem 'capybara'
+gem 'selenium-webdriver'
 
 group :production do
 end
@@ -25,7 +27,6 @@ group :testing, :development do
   gem 'shotgun'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'capybara'
   gem 'rack-test', :require => 'rack/test'
   gem 'rspec'
   gem 'sass'

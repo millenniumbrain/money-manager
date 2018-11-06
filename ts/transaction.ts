@@ -1,6 +1,8 @@
 import {Overlay} from "./overlay";
 import {HTTP} from "./http";
-import { DateTime } from "luxon";
+//import { DateTime } from "luxon";
+declare var luxon;
+const DateTime = luxon.DateTime;
 
 export class TransactionOverlay extends Overlay {
   public form: HTMLFormElement;

@@ -4,6 +4,7 @@
     <title><%= locals[:title] %></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="<%= link_img('favicon', ext: 'ico')%>"/>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -43,6 +44,8 @@
       </div>
      </section>
     </div>
+    <script src="<%= link_min("luxon") %>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <% if locals[:js].is_a? Array %>
     <% locals[:js].each do |js| %>
     <script src="<%= js %>"></script>
@@ -50,6 +53,5 @@
     <% else %>
     <script src="<%= locals[:js] %>"></script>
     <% end %>
-
   </body>
 </html>

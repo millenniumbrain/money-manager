@@ -1,7 +1,7 @@
 App.route("transactions") do |r|
+  response['Content-Type'] = 'application/json'
   r.is do
     r.get do
-      response['Content-Type'] = 'application/json'
       transaction = Transaction.all
       transaction.to_a.map! { |a| a.to_hash }
       transaction.each do |t|

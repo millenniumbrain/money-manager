@@ -1,12 +1,12 @@
 import {HTTP} from "./http";
 import {TransactionOverlay} from "./transaction";
 import {AccountOverlay} from "./account"
-import * as Chart from "chart.js";
+//import * as Chart from "chart.js";
+declare var Chart;
 
 const addTransaction = document.getElementById("addTransaction");
 
 addTransaction.addEventListener("click", (event: Event) => {
-  console.log("Cool Math")
   const overlay = new TransactionOverlay("Add Transaction");
   overlay.generateModal();
   overlay.generateForm("/transactions");
@@ -81,36 +81,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
       tranTable.appendChild(row);
     }
-  })
+  });
 });
 
 const categoryCTX = document.getElementById("categoryPie");
-const doughnut = new Chart(categoryCTX as any, {
-    type: 'doughnut',
-    data: {
-        labels: ["Food", "Electronics", "Gaming"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-            ],
-            borderWidth: 1
-        }]
+const pieOpts = {
+  type: 'doughnut',
+  data: {
+      labels: ["Food", "Electronics", "Gaming"],
+      datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 6, 7],
+          backgroundColor: [],
+          borderWidth: 1
+      }]
+  },
+  
+  options: {
+    responsive: true,
+    legend: {
+      position: 'left',
     },
-    options: {
-      responsive: true,
-      legend: {
-        position: 'left',
-      },
-      animation: {
-        animateScale: true,
-        animateRotate: true
+    layout: {
+      padding: {
+        left: 20,
+        right: 20,
+        bottom: 0,
+        top: 0
       }
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
     }
-});
+  }
+};
+
+
+Chart.defaults.global.defaultFontFamily = "'Nunito', sans-serif";
+Chart.defaults.global.defaultFontSize = 14;
+const colors = [
+  "#BEC0C1",
+  "#980B12",
+  "#DD141C",
+  "#55211C",
+  "#A3A442",
+  "#DD4F4B",
+]
+
+pieOpts.data.datasets[0].backgroundColor = colors;
+
+const doughnut = new Chart(categoryCTX as any, pieOpts);
 
 const balanceCTX = document.getElementById("balanceHistory");
 const balanceHistory = new Chart(balanceCTX as any, {
@@ -119,27 +140,27 @@ const balanceHistory = new Chart(balanceCTX as any, {
       labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
       datasets: [{
           label: 'Income',
-          data: [200,  50, 450, 75, 125, 150],
+          data: [200, 50, 450, 75, 125, 150],
           backgroundColor: [
-              'rgba(0, 230, 64, 0.1)',
+              'rgba(68, 147, 116, 0.1)',
           ],
           pointRadius: 0,
           borderColor: [
-              'rgba(0, 230, 64, 1)',
+              'rgb(68, 147, 116)',
           ],
-          borderWidth: 1
+          borderWidth: 2
       },
       {
         label: 'Expense',
         data: [300,  25, 200, 0, 0, 250],
         backgroundColor: [
-            'rgba(255, 99, 132, 0.1)',
+            'rgba(221, 20, 28, 0.1)',
         ],
         pointRadius: 0,
         borderColor: [
-            'rgba(255,99,132,1)',
+            'rgb(221, 20, 28)',
         ],
-        borderWidth: 1
+        borderWidth: 2
     }
     ]
   },
@@ -156,8 +177,8 @@ const balanceHistory = new Chart(balanceCTX as any, {
       padding: {
         left: 60,
         right: 60,
-        bottom: 30,
-        top: 10
+        bottom: 0,
+        top: 0
       }
     },
     scales: {

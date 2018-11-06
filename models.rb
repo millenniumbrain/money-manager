@@ -1,7 +1,7 @@
 require 'logger'
 require 'sequel'
 
-DB = Sequel.sqlite('db/test.sqlite')
+DB = Sequel.sqlite(File.dirname(__FILE__)+'/db/test.sqlite')
 DB.loggers << Logger.new($stdout)
 
 Sequel.default_timezone = :utc
