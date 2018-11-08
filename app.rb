@@ -37,6 +37,8 @@ class App < Roda
     Nokogiri::HTML(File.open(File.dirname(__FILE__) + "/public/404.html")).to_s
   end
 
+  include Rack::Utils
+
   self.environment = :development
 
   configure do

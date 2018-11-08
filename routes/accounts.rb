@@ -18,23 +18,21 @@ App.route("accounts") do |r|
 
   r.on Integer do |id|
     @account = Account[id]
-
-    r.is "balance" do
-      transactions = Transaction
-      .where(account_id: id).inject(0) do |sum, r|
-        value = r[:amount]
-        if r[:type] == "income"
-          sum + value
-        else
-          sum - value
-        end
+    transactions = Transaction
+    .where(account_id: id).inject(0) do |sum, r|
+      value = r[:amount]
+      if r[:type] == "income"
+        sum + value
+      else
+        sum - value
       end
-      {
-
+    end
+    {
+      balance: {
         current: "%.2f" % transactions,
         available: "%.2f" % transactions
-      }.to_json
-    end
+      }
+    }.to_json
   end
 
   r.multi_route('accounts')

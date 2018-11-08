@@ -2,12 +2,40 @@ App.route("transactions") do |r|
   response['Content-Type'] = 'application/json'
   r.is do
     r.get do
-      transaction = Transaction.all
-      transaction.to_a.map! { |a| a.to_hash }
-      transaction.each do |t|
-        t[:amount] = "%.2f" % t[:amount].to_s 
-        t[:date] = t[:date].strftime("%b %d, %Y")
-        t[:account_name] = Account[t[:account_id]].name
+      query_params ||= parse_nested_query(r.query_string)
+      transaction = nil
+      pp query_params
+      case "true"
+      when query_params['monthly']
+        monthly_income = Transaction.select(:amount, :date).where(type: 'income')
+          .select_group(Sequel.function(:strftime, '%Y-%m', :date).as(:year))
+          .select_append(Sequel.function(:round, 
+            Sequel.function(:sum, :amount), 2).as(:income)
+          ) # can't round and sum for some reason investigate furhter later
+          .each_with_object({}) do |item, hash|
+            hash[item[:year]] = item[:income].round(2)
+          end
+        monthly_expenses = Transaction.select(:amount, :date).where(:type => 'expense')
+        .select_group(Sequel.function(:strftime, '%Y-%m', :date).as(:year))
+        .select_append(Sequel.function(:round, 
+          Sequel.function(:sum, :amount),2).as(:expense)
+        )
+        .each_with_object({}) do |item, hash|
+          hash[item[:year]] = item[:expense]
+        end
+        transaction = {
+          income: monthly_income,
+          expenses: monthly_expenses,
+          totals: monthly_income.merge(monthly_expenses){|k, i, e| (i - e).round(2)}
+        }
+      else
+        transaction = Transaction.all
+        transaction.to_a.map! { |a| a.to_hash }
+        transaction.each do |t|
+          t[:amount] = "%.2f" % t[:amount].to_s 
+          t[:date] = t[:date].strftime("%b %d, %Y")
+          t[:account_name] = Account[t[:account_id]].name
+        end
       end
       transaction.to_json
     end
