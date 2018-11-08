@@ -18,7 +18,7 @@ App.route("accounts") do |r|
 
   r.on Integer do |id|
     @account = Account[id]
-    transactions = Transaction
+    balance = Transaction
     .where(account_id: id).inject(0) do |sum, r|
       value = r[:amount]
       if r[:type] == "income"
@@ -29,8 +29,8 @@ App.route("accounts") do |r|
     end
     {
       balance: {
-        current: "%.2f" % transactions,
-        available: "%.2f" % transactions
+        current: format_currency(balance),
+        available: format_currency(balance)
       }
     }.to_json
   end

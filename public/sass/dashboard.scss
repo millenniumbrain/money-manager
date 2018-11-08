@@ -57,8 +57,13 @@
   margin: 0 10px;
 }
 
-.chartjs-render-monitor {
-  position: relative;
+#monthlyChart{
+  height: 60%;
+  .overview-card {
+    height: 100%;
+    width: 95%;
+    margin: 0 15px;
+  }
 }
 
 #charts {
@@ -66,9 +71,13 @@
   .overview-card {
     height: 100%;
     width: 95%;
-    margin: 0 15px;
+    margin: 2% 15px 0;
   }
 
+}
+
+.chartjs-render-monitor {
+  position: relative;
 }
 
 #categoryPie {

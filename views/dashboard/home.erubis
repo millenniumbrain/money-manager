@@ -7,7 +7,7 @@
           <h4>Available</h4>
           <div class="available-balance">
             <span class="currency material-icons">attach_money</span>
-            <span id="currentBalance">3,000.52</span>
+            <span id="currentBalance"></span>
           </div>
         </div>
       </div>
@@ -42,6 +42,17 @@
           <div class="account-options">
             <span id="addAccount" class="material-icons">add</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="monthlyChart">
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <div class="overview-wrap">
+        <div class="overview-card">
+          <canvas id="monthlyOverview"></canvas>
         </div>
       </div>
     </div>

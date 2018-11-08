@@ -25,14 +25,14 @@ Capybara.default_driver = :headless_firefox
 include Capybara::DSL
 page.driver.browser.manage.window.resize_to(1600, 900)
 puts "Visiting page..."
-visit('https://ed0d2f2a.ngrok.io/dashboard')
+visit("#{ENV['BASE_URL']}/dashboard")
 puts "Adding a transaction"
 page.find("#addTransaction").click
 page.has_select?('form select', options: ['My Account'])
 i = 0
 puts "Adding info"
 while i < 10 do
-  find('form select[name=type]').find(:xpath, "option[2]").select_option
+  find('form select[name=type]').find(:xpath, "option[1]").select_option
   find('form select[name=account]').find(:xpath, "option[1]").select_option
   fill_in 'date', with: Faker::Date.between(Date.today.months_ago(5), Date.today).strftime("%b %d, %Y")
   fill_in 'desc', with: Faker::Commerce.department(5)

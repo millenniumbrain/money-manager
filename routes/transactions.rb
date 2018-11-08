@@ -4,7 +4,7 @@ App.route("transactions") do |r|
     r.get do
       query_params ||= parse_nested_query(r.query_string)
       transaction = nil
-      pp query_params
+      #pp query_params
       case "true"
       when query_params['monthly']
         monthly_income = Transaction.select(:amount, :date).where(type: 'income')
@@ -28,11 +28,19 @@ App.route("transactions") do |r|
           expenses: monthly_expenses,
           totals: monthly_income.merge(monthly_expenses){|k, i, e| (i - e).round(2)}
         }
-      else
-        transaction = Transaction.all
-        transaction.to_a.map! { |a| a.to_hash }
+      when query_params["current_month"]
+        transaction = Transaction.where{Sequel.lit("STRFTIME('%m', date) = STRFTIME('%m', date('now'))") & Sequel.lit("STRFTIME('%Y', date) = STRFTIME('%Y', date('now'))")}.limit(10)
+        transaction = transaction.to_a.map! { |a| a.to_hash }
         transaction.each do |t|
-          t[:amount] = "%.2f" % t[:amount].to_s 
+          t[:amount] = format_currency(t[:amount]) 
+          t[:date] = t[:date].strftime("%b %d, %Y")
+          t[:account_name] = Account[t[:account_id]].name
+        end
+      else
+        transaction = Transaction.limit(10)
+        transaction = transaction.to_a.map! { |a| a.to_hash }
+        transaction.each do |t|
+          t[:amount] = format_currency(t[:amount]) 
           t[:date] = t[:date].strftime("%b %d, %Y")
           t[:account_name] = Account[t[:account_id]].name
         end

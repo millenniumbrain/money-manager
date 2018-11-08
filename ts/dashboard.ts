@@ -29,7 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("accountName");
     const accounts = JSON.parse(data as string);
     name.textContent = accounts[0]["name"];
+    return accounts;
+  }).then((accounts) => { 
+    HTTP.get(`/accounts/${accounts[0]["id"]}`).then((data) => {
+      const accountBalance = JSON.parse(data as string);
+      const avalBalance = document.getElementById("currentBalance");
+      avalBalance.textContent = accountBalance["balance"]["available"];
+      //console.log(accountBalance["balance"]["available"])
+    });
   });
+
 
   HTTP.get("/transactions").then((data) => {
     const tranTable = document.querySelector("#transactions tbody");
@@ -197,4 +206,8 @@ const balanceHistory = new Chart(balanceCTX as any, {
       }]
     }
   }
+});
+
+HTTP.get("/transactions?monthly=true").then((data) => {
+  const transactionMon = JSON.parse(data as string);
 });
