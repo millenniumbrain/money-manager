@@ -22,14 +22,13 @@ addAccount.addEventListener("click", (event: Event) => {
   addAccounts.create();
 });
 
-const accountName = document.getElementById("accountName");
+const accountName = document.getElementById("accounts");
 
 document.addEventListener("DOMContentLoaded", () => {
   HTTP.get("/accounts").then((data) => {
-    const name = document.createElement("span");
+    const name = document.getElementById("accountName");
     const accounts = JSON.parse(data as string);
     name.textContent = accounts[0]["name"];
-    accountName.insertBefore(name, accountName.firstChild);
   });
 
   HTTP.get("/transactions").then((data) => {

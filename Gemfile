@@ -24,6 +24,7 @@ group :documentation do
 end
 
 group :testing, :development do
+  gem 'faker'
   gem 'shotgun'
   gem 'better_errors'
   gem 'binding_of_caller'

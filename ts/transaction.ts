@@ -22,6 +22,7 @@ export class TransactionOverlay extends Overlay {
 
   public generateForm = (actionUrl: string) : void => {
     this.form = document.createElement("form");
+    this.form.id = "newTransaction"
     this.form.className = "pure-form pure-form-stacked";
 
     const fieldset = document.createElement("fieldset");

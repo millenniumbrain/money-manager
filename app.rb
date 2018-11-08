@@ -39,16 +39,6 @@ class App < Roda
 
   self.environment = :development
 
-  configure :headless do
-    plugin :default_headers,
-    'Content-Type' => 'text/html',
-    'Content-Security-Policy' => "default-src 'self' #{ENV['TEST_URL']} *.cloudflare.com *.fontawesome.com *.googleapis.com *.gstatic.com unpkg.com; style-src 'self' #{ENV['TEST_URL']} 'unsafe-inline' *.fontawesome.com *.googleapis.com *.gstatic.com unpkg.com; img-src *",
-    'Strict-Transport-Security' => 'max-age=160704400',
-    'X-Frame-Options' => 'deny',
-    'X-Content-Type-Options' => 'nosniff',
-    'X-XSS-Protection' => '1; mode=block'
-  end
-
   configure do
     use Rack::Session::Cookie, :secret => ENV['SECRET']
     use Rack::Session::Pool, :expire_after => 252000

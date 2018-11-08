@@ -3,8 +3,8 @@ ENV["BUNDLE_GEMFILE"] = "/home/wwilson/money-manager/Gemfile"
 require 'capybara'
 require 'capybara/dsl'
 require 'selenium-webdriver'
+require 'faker'
 require Dir.home + '/money-manager/app.rb'
-pp ENV
 App.environment = :headless
 Capybara.app = App
 
@@ -20,11 +20,14 @@ Capybara::Selenium::Driver.new(
     options: browser_options
   )
 end
-Capybara.default_driver = :selenium #:headless_firefox
+Capybara.default_driver = :headless_firefox
 include Capybara::DSL
 page.driver.browser.manage.window.resize_to(1600, 900)
 visit('http://127.0.0.1:9292/dashboard')
-sleep(20)
 page.find("#addTransaction").click
 page.has_select?('form select', options: ['My Account'])
+types = find("form select[name=type]").all('option').collect(&:text)
+pp types
+find('form select[name=type]').find("option[value=#{types[rand(1)]}]").select_option
+fill_in 'desc', with: Faker::Commerce.department(5)
 page.save_screenshot('screenshot.png')

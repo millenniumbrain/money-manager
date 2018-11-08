@@ -43,15 +43,18 @@
 }
 
 .overview {
+  height: 25%;
   margin: 2% 0 2%;
 }
 
-#homeOverview {
-  height: 25%;
+#accounts {
+  .material-icons {
+    cursor: pointer;
+  }
 }
 
-#billsOverview {
-  height: 25%;
+#accountName {
+  margin: 0 10px;
 }
 
 .chartjs-render-monitor {

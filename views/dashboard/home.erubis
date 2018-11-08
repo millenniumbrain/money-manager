@@ -34,8 +34,10 @@
         <h3>Accounts</h3>
         <div class="overview-card">
           <h4>Current Account</h4>
-          <div id="accountName" class="account-name">
-            <span class="material-icons">keyboard_arrow_down</span>
+          <div id="accounts" class="account-name">
+            <span id="changeAccountLeft" class="material-icons">keyboard_arrow_left</span>
+            <span id="accountName"></span>
+            <span id="changeAccountRight" class="material-icons">keyboard_arrow_right</span>
           </div>
           <div class="account-options">
             <span id="addAccount" class="material-icons">add</span>
