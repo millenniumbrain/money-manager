@@ -1,8 +1,11 @@
 import {HTTP} from "./http";
 import {TransactionOverlay} from "./transaction";
 import {AccountOverlay} from "./account"
+
 //import * as Chart from "chart.js";
 declare var Chart;
+declare var luxon;
+const DateTime = luxon.DateTime;
 
 const addTransaction = document.getElementById("addTransaction");
 
@@ -35,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const accountBalance = JSON.parse(data as string);
       const avalBalance = document.getElementById("currentBalance");
       avalBalance.textContent = accountBalance["balance"]["available"];
-      //console.log(accountBalance["balance"]["available"])
+      console.log(accountBalance["balance"]["available"])
     });
   });
 
@@ -69,11 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
       desc.textContent = transaction["desc"];
       desc.className = "center-text";
       account_name.textContent = transaction["account_name"];
-      category.textContent = "None";
+      category.textContent = transaction["category_name"];
 
       dropdown.className = "material-icons";
       dropdown.textContent = "more_horiz";
       options.className = "center_text";
+      options.colSpan = 2;
       options.appendChild(dropdown);
 
       fields.push(date);
@@ -83,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fields.push(category);
       fields.push(options);
 
-      for (let field of fields) {
+      for (let field of fields as any) {
         row.appendChild(field);
       }
 
@@ -91,6 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
+Chart.defaults.global.defaultFontSize = 14;
 
 const categoryCTX = document.getElementById("categoryPie");
 const pieOpts = {
@@ -125,9 +132,6 @@ const pieOpts = {
   }
 };
 
-
-Chart.defaults.global.defaultFontFamily = "'Nunito', sans-serif";
-Chart.defaults.global.defaultFontSize = 14;
 const colors = [
   "#BEC0C1",
   "#980B12",
@@ -135,20 +139,19 @@ const colors = [
   "#55211C",
   "#A3A442",
   "#DD4F4B",
-]
+];
 
 pieOpts.data.datasets[0].backgroundColor = colors;
 
 const doughnut = new Chart(categoryCTX as any, pieOpts);
 
-const balanceCTX = document.getElementById("balanceHistory");
-const balanceHistory = new Chart(balanceCTX as any, {
+const balHistoryOpts = {
   type: 'line',
   data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      labels: [],
       datasets: [{
           label: 'Income',
-          data: [200, 50, 450, 75, 125, 150],
+          data: [],
           backgroundColor: [
               'rgba(68, 147, 116, 0.1)',
           ],
@@ -160,7 +163,7 @@ const balanceHistory = new Chart(balanceCTX as any, {
       },
       {
         label: 'Expense',
-        data: [300,  25, 200, 0, 0, 250],
+        data: [],
         backgroundColor: [
             'rgba(221, 20, 28, 0.1)',
         ],
@@ -206,8 +209,40 @@ const balanceHistory = new Chart(balanceCTX as any, {
       }]
     }
   }
-});
+}
 
-HTTP.get("/transactions?monthly=true").then((data) => {
-  const transactionMon = JSON.parse(data as string);
+const balanceOverviewOpts = {
+  type: 'bar',
+  labels: [],
+  datasets: [{
+    label: "Balance by Month",
+    data: [],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+    ],
+    borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+    ],
+    borderWidth: 1
+  }]
+}
+
+HTTP.get("/transactions?monthly=true").then((data) => { 
+  const monTransactions = JSON.parse(data as string);
+  for (let month of monTransactions["monthly_total_types"]) {
+    const formatMon = DateTime.fromString(month["month"], "yyyy-LL").toFormat("LLL");
+    balHistoryOpts.data.labels.push(formatMon);
+    balHistoryOpts.data.datasets[0].data.push(month["income"]);
+    balHistoryOpts.data.datasets[1].data.push(month["expense"]);
+  }
+  const balanceCTX = document.getElementById("balanceHistory");
+  const balanceHistory = new Chart(balanceCTX as any, balHistoryOpts);
 });

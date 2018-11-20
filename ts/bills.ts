@@ -1,0 +1,1 @@
+const addBill = document.getElementById("addBill");

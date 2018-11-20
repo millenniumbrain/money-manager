@@ -11,6 +11,14 @@ export class Overlay {
     this.overlay.setAttribute("id", "overlay");
   }
 
+  public generateLabels(labels: Array<string>, fields: Array<any>) {
+    for (let i = labels.length - 1; i >= 0; i--) {
+      const label = document.createElement("label");
+      label.textContent = labels[i];
+      fields.splice(i, 0, label);
+    }
+  }
+
   public generateModal() : void {
     const modalHeader = document.createElement("div");
     const modalTitle = document.createElement("div");

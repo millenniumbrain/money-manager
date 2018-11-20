@@ -13,9 +13,22 @@
   border-bottom: 1px solid #eee;
   padding: 10px 5px;
 }
+#header .pure-g div {
+  position: relative;
+}
+
+.add-button {
+  @include vertical-align(absolute, 50%);
+  position: absolute;
+  width: 100px;
+  right: 5%;
+}
 
 .header-wrap {
-  padding: 5px 10px;
+  text-align: center;
+  h4 {
+    @include vertical-align(relative, -75%);
+  }
 }
 
 #content {

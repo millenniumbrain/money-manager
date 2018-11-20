@@ -1,10 +1,8 @@
 Sequel.migration do
   up do
-    create_table(:categories) do
+    create_table(:payment_statuses) do
       primary_key :id
       String :name
-      DateTime :created_at
-      DateTime :updated_at
       foreign_key :user_id
     end
   end

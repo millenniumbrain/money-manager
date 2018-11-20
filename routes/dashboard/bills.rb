@@ -4,8 +4,8 @@ App.route('bills', 'dashboard') do |r|
       view('dashboard/bills', layout: 'dashboard/layout', layout_opts: {
           locals: {
             title: "Bills", 
-            add_item: {id: "addAccount", text: "Add Account"},
-            js: [link_js("dashboard")]
+            add_item: {id: "addBill", text: "Add Bill"},
+            js: [link_js("bills")]
           }
         })
     end

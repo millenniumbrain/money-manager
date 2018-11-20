@@ -20,6 +20,10 @@ export class TransactionOverlay extends Overlay {
 
   }
 
+  public generateLabels(labels: Array<string>, fields: Array<any>) : any {
+    super.generateLabels(labels, fields);
+  }
+
   public generateForm = (actionUrl: string) : void => {
     this.form = document.createElement("form");
     this.form.id = "newTransaction"
@@ -30,6 +34,7 @@ export class TransactionOverlay extends Overlay {
     const type = document.createElement("select");
     const amount = document.createElement("input");
     const accounts = document.createElement("select");
+    const categories = document.createElement("select");
     const desc = document.createElement("textarea");
     const submit = document.createElement("button");
 
@@ -37,6 +42,7 @@ export class TransactionOverlay extends Overlay {
     type.name = "type";
     amount.name = "amount";
     accounts.name = "account";
+    categories.name = "category";
     desc.name = "desc";
     
     date.value = DateTime.local().toLocaleString(DateTime.DATE_MED);
@@ -44,7 +50,7 @@ export class TransactionOverlay extends Overlay {
     submit.textContent = "Add Transaction";
     submit.type = "submit";
     
-    const fields = [];
+    let fields = [];
     
     const typeOpts = ["income", "expense"];
     for (let i = 0; i < typeOpts.length; i++) {
@@ -56,13 +62,21 @@ export class TransactionOverlay extends Overlay {
 
     HTTP.get("/accounts").then((data) => {
       const accountList = JSON.parse(data as string);
-      console.log(accountList)
       for(let i = 0; i < accountList.length; i++) {
         const option = document.createElement("option");
-        console.log(accountList[i]["name"])
         option.textContent = accountList[i]["name"];
         option.value = accountList[i]["id"]
         accounts.appendChild(option);
+      }
+    });
+
+    HTTP.get("/categories").then((data) => {
+      const catList = JSON.parse(data as string);
+      for (let i = 0; i < catList.length; i++) {
+        const option = document.createElement("option");
+        option.textContent = catList[i]["name"];
+        option.value = catList[i]["id"];
+        categories.appendChild(option);
       }
     });
 
@@ -70,15 +84,13 @@ export class TransactionOverlay extends Overlay {
     fields.push(type);
     fields.push(amount);
     fields.push(accounts);
+    fields.push(categories)
     fields.push(desc);
     fields.push(submit);
 
-    const labels = ["Date", "Type", "Amount", "Accounts", "Description"];
-    for (let i = labels.length - 1; i >= 0; i--) {
-      const label = document.createElement("label");
-      label.textContent = labels[i];
-      fields.splice(i, 0, label);
-    }
+    const labels = ["Date", "Type", "Amount", "Accounts", "Categories", "Description"];
+
+    this.generateLabels(labels, fields);
     
     for (let i = 0; i < fields.length; i++) {
       fieldset.appendChild(fields[i]);

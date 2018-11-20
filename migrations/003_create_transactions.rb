@@ -9,6 +9,8 @@ Sequel.migration do
       DateTime :created_at
       DateTime :updated_at
       foreign_key :user_id
+      foreign_key :bill_id
+      foreign_key :category_id
       foreign_key :account_id
     end
   end

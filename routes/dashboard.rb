@@ -10,15 +10,5 @@ App.route("dashboard") do |r|
     end
   end
 
-  r.is 'bills' do
-    r.get do
-      view('dashboard/bills', layout: 'dashboard/layout',
-          layout_opts: { locals: {title: "Bills", js: [link_js("dashboard")]}})
-    end
-
-    r.post do
-    end
-  end
-
   r.multi_route('dashboard')
 end

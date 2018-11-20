@@ -12,9 +12,6 @@ export class AccountOverlay extends Overlay {
     super.generateModal();
   }
 
-  public generateLabels(labels: Array<string>, fields: Array<any>) : any {
-    super.generateLabels(labels, fields);
-  }
 
   public generateForm = (actionUrl: string) : void => {
     this.form = document.createElement("form");
@@ -36,7 +33,11 @@ export class AccountOverlay extends Overlay {
     fields.push(accountName);
     fields.push(submit);
 
-    this.generateLabels(labels, fields);
+    for (let i = labels.length - 1; i >= 0; i--) {
+      const label = document.createElement("label");
+      label.textContent = labels[i];
+      fields.splice(i, 0, label);
+    }
     
     for (let i = 0; i < fields.length; i++) {
       fieldset.appendChild(fields[i]);

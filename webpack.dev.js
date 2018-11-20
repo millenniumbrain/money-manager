@@ -14,7 +14,8 @@ module.exports = {
   mode: 'development',
   entry: {
     app: './ts/app.ts',
-    dashboard: './ts/dashboard.ts'
+    dashboard: './ts/dashboard.ts',
+    bills: './ts/bills.ts'
   },
   devtool: 'inline-source-maps',
   output: {
