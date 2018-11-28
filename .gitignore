@@ -15,6 +15,9 @@ public/css/style.css
 vendor
 bin
 
+# screenshot
+mock_scripts/screenshots
+
 # Gemfile lock
 *.lock
 .lock
