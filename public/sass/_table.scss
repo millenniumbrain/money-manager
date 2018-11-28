@@ -30,7 +30,7 @@
     }
     .material-icons {
       width: initial;
-      left: 35%;
+      left: 38%;
      // @include vertical-align(relative, -28%);
     }
   }
@@ -42,4 +42,34 @@
 
 .expense {
   color: #f22613;
+}
+
+.add-table-button {
+  box-sizing: border-box;
+  padding: 2px;
+  background: rgba(189, 195, 199, 0);
+  border-radius: 30px;
+  &:hover {
+    padding: 2px;
+    background: rgba(189, 195, 199, 1);
+    border-radius: 30px;
+    cursor: pointer;
+  }
+}
+
+.drop-options {
+  @include vertical-align(relative, -5%);
+  box-sizing: border-box;
+  padding: 2px;
+  background: rgba(189, 195, 199, 0);
+  border-radius: 30px;
+  &:hover {
+    padding: 2px;
+    background: rgba(189, 195, 199, 1);
+    border-radius: 30px;
+    cursor: pointer;
+  }
+}
+#addBill {
+  left: 42%;
 }

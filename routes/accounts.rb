@@ -3,8 +3,8 @@ App.route("accounts") do |r|
   response['Content-Type'] = 'application/json'
   r.is do
     r.get do
-      account = Account.all
-      account.to_a.map! { |a| a.to_hash }
+      account = Account.limit(10)
+      account = account.to_a.map! { |a| a.to_hash }
       account.to_json
     end
 

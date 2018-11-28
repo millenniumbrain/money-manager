@@ -3,6 +3,7 @@ Sequel.migration do
     create_table(:service_providers) do
       primary_key :id
       String :name
+      String :pay_period_type
       String :desc
       DateTime :created_at
       DateTime :updated_at

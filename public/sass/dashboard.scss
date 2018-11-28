@@ -20,7 +20,7 @@
 .add-button {
   @include vertical-align(absolute, 50%);
   position: absolute;
-  width: 100px;
+  padding: .5em 1.2em;
   right: 5%;
 }
 
@@ -172,14 +172,6 @@
 }
 
 #addTransaction {
-  box-sizing: border-box;
-  padding: 2px;
-  background: rgba(189, 195, 199, 0);
-  border-radius: 30px;
-  &:hover {
-    padding: 2px;
-    background: rgba(189, 195, 199, 1);
-    border-radius: 30px;
-    cursor: pointer;
-  }
+
 }
+

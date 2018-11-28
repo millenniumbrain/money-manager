@@ -1,13 +1,26 @@
 .pure-form-stacked {
   position: relative;
   label {
-    margin: 10px 0 0;
+    margin: 15px 0 5px;
     text-align: left;
+  }
+  .pure-radio input {
+    margin-right: 5px;
   }
 }
 
 .search-bar {
   input[type=text] {
     width: 75%;
+  }
+}
+
+.upload-con {
+  width: 90%;
+  border: 1px dashed #111;
+  border-radius: 3px;
+  input {
+    padding: 5px 10px;
+    
   }
 }

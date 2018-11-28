@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       account_name.textContent = transaction["account_name"];
       category.textContent = transaction["category_name"];
 
-      dropdown.className = "material-icons";
+      dropdown.className = "material-icons drop-options";
       dropdown.textContent = "more_horiz";
       options.className = "center_text";
       options.colSpan = 2;

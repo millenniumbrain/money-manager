@@ -18,7 +18,7 @@
     <div class="pure-u-1-4">
       <div class="overview-wrap">
         <div class="overview-card">
-          <h4>Highest Expenses</h4>
+          <h4>Recently Added</h4>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<table id="transactions" class="dash-table pure-table pure-table-horizontal">
+<table id="bills" class="dash-table pure-table pure-table-horizontal">
   <thead>
     <th class="date">
       <span>Service Provider</span>
@@ -49,7 +49,7 @@
     <th>
       <span>PDF</span>
     </th>
-    <th><span id="addTransaction" class="material-icons" title="Add Transaction">add</span></th>
+    <th><span id="addBill" class="material-icons add-table-button" title="Add Bill">add</span></th>
   </thead>
   <tbody>
   </tbody>

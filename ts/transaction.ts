@@ -39,9 +39,11 @@ export class TransactionOverlay extends Overlay {
     const submit = document.createElement("button");
 
     date.name = "date";
+    date.type = "text";
     type.name = "type";
     amount.name = "amount";
-    accounts.name = "account";
+    amount.type = "text"
+    accounts.name = "account"
     categories.name = "category";
     desc.name = "desc";
     
