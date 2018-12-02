@@ -3,6 +3,7 @@ import {ServiceProviderOverlay} from "./service_provider";
 import {BillOverlay} from "./bill";
 
 
+
 const addService = document.getElementById("addService");
 
 addService.addEventListener("click", (event: Event) => {
@@ -22,8 +23,17 @@ addBill.addEventListener("click", (event: Event) => {
 }, false);
 
 document.addEventListener("DOMContentLoaded", (event: Event) => {
+  const billQuant = document.getElementById("billQuant");
+  HTTP.get("/bills?quantity=true").then((data) => {
+    const quantity = JSON.parse(data as string);
+    const numBills = document.createElement("span");
+    console.log(quantity);
+    numBills.textContent = quantity["quantity"];
+    billQuant.appendChild(numBills);
+  });
+
   HTTP.get("/bills").then((data) => {
-    const tranTable = document.querySelector("#bills tbody");
+    const billTable = document.querySelector("#bills tbody");
     const transactions = JSON.parse(data as string);
     
     for (let transaction of transactions) {
@@ -38,15 +48,14 @@ document.addEventListener("DOMContentLoaded", (event: Event) => {
 
       const fields = [];
 
-      service.textContent = transaction["service_provider_id"];
+      service.textContent = transaction["service_provider"];
       dueDate.textContent = transaction["due_date"];
       const amountOwed: number = parseFloat(transaction["amount_owed"]);
       const amountPaid: number = parseFloat(transaction["amount_paid"]);
       const finalAmount = amountOwed - amountPaid;
       amount.textContent = finalAmount.toFixed(2);
 
-
-      paymentStatus.textContent = transaction["payment_status_id"];
+      paymentStatus.textContent = transaction["payment_status"];
 
       pdf.textContent = "None";
       pdf.className = "center-text";
@@ -68,8 +77,7 @@ document.addEventListener("DOMContentLoaded", (event: Event) => {
         row.appendChild(field);
       }
 
-      tranTable.appendChild(row);
+      billTable.appendChild(row);
     }
   });
 });
-})

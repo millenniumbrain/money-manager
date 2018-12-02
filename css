@@ -1,0 +1,23 @@
+/*
+Errno::ENOENT: No such file or directory @ rb_sysopen - css
+
+Backtrace:
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:454:in `read'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:454:in `update_stylesheet'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:209:in `each'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:294:in `watch'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/plugin.rb:109:in `method_missing'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/exec/sass_scss.rb:358:in `watch_or_update'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/exec/base.rb:50:in `parse'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/lib/sass/exec/base.rb:18:in `parse!'
+/home/wwilson/money-manager/vendor/ruby/2.4.0/gems/sass-3.6.0/bin/sass:13:in `<top (required)>'
+bin/sass:29:in `load'
+bin/sass:29:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Errno::ENOENT: No such file or directory @ rb_sysopen - css"; }

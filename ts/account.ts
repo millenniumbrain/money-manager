@@ -28,6 +28,7 @@ export class AccountOverlay extends Overlay {
     const fields = [];
 
     accountName.name = "account_name";
+    accountName.type = "text";
 
     submit.className = "pure-button pure-button-primary";
     submit.textContent = "Add Account";

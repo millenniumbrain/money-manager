@@ -40,5 +40,14 @@ App.route("transactions") do |r|
     end
   end
 
+
+  r.is "categories" do
+    cats = Transaction.group_and_count(:category_id)
+      .join(:categories, id: :category_id)
+      .select_append(Sequel.lit("categories.name as category_name"))
+      .to_a.map!{ |a| a.to_hash }
+    cats.to_json
+  end
+
   r.multi_route('transactions')
 end

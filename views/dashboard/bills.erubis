@@ -4,13 +4,14 @@
       <div class="overview-wrap">
         <div class="overview-card">
           <h4>Quantity of Bills</h4>
+          <div id="billQuant"></div>
         </div>
       </div>
     </div>
     <div class="pure-u-1-4">
       <div class="overview-wrap">
         <div class="overview-card">
-          <h4>Expenses</h4>
+          <h4>Bill Total</h4>
           <div id="totalExpenses"></div>
         </div>
       </div>

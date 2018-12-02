@@ -24,6 +24,7 @@ namespace :sqlite do
     Sequel::Model.plugin :timestamps, :update_on_create => true
     Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |f| require f}
     
+    ServiceProvider.insert(name: "None")
     PaymentStatus.insert(name: "Not Paid")
     PaymentStatus.insert(name: "Paid")
 

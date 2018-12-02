@@ -99,14 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
 Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
 Chart.defaults.global.defaultFontSize = 14;
 
-const categoryCTX = document.getElementById("categoryPie");
 const pieOpts = {
   type: 'doughnut',
   data: {
-      labels: ["Food", "Electronics", "Gaming"],
+      labels: [],
       datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 6, 7],
+          label: 'Categories',
+          data: [],
           backgroundColor: [],
           borderWidth: 1
       }]
@@ -143,7 +142,17 @@ const colors = [
 
 pieOpts.data.datasets[0].backgroundColor = colors;
 
-const doughnut = new Chart(categoryCTX as any, pieOpts);
+HTTP.get("/transactions/categories").then((data) => {
+ const cats = JSON.parse(data as string);
+ for (let i = 0; i < cats.length; i++) {
+  pieOpts.data.labels.push(cats[i]["category_name"]);
+  pieOpts.data.datasets[0].data.push(cats[i]["count"]);
+ }
+ const categoryCTX = document.getElementById("categoryPie");
+ const doughnut = new Chart(categoryCTX as any, pieOpts);
+})
+
+
 
 const balHistoryOpts = {
   type: 'line',
